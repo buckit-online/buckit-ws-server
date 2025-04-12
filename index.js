@@ -1,9 +1,11 @@
 import { WebSocketServer } from 'ws'
 import url from 'url'
+import dotenv from 'dotenv'
+dotenv.config()
 
 const cafeConnections = new Map()
 
-const wss = new WebSocketServer({ port: 8080 })
+const wss = new WebSocketServer({ port: process.env.WS_PORT })
 
 // WebSocket connection handler
 wss.on('connection', (ws, req) => {
@@ -85,4 +87,4 @@ const updateToCafe = (cafeId, data) => {
   })
 }
 
-console.log('WebSocket server is running on port 8080')
+console.log(`WebSocket server is running on port ${process.env.WS_PORT}`)
